@@ -8,4 +8,4 @@ jobs:
 
     - stage: "Deploy to Heroku"
       if: branch IN (development, staging, main) AND tag IS blank
-      script: echo Deployed
+      script: '[[ $TRAVIS_BRANCH != "main" || ($(cat build_status) =~ "SUCCESS" && $TRAVIS_BRANCH =~ "main") ]]'
